@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customers-service
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: customers-service
+  template:
+    metadata:
+      labels:
+        app: customers-service
+    spec:
+      containers:
+      - image: hyasuhisa/spring-petclinic-customers-service:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3
+        name: customers-service
+        ports:
+        - containerPort: 8081

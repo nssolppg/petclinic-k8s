@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-server
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: admin-server
+  template:
+    metadata:
+      labels:
+        app: admin-server
+    spec:
+      containers:
+      - image: hyasuhisa/spring-petclinic-admin-server:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3
+        name: admin-server
+        ports:
+        - containerPort: 9090
