@@ -1,6 +1,6 @@
 resources:
-- admin-server-deployment.yaml
-- admin-server-svc.yaml
+- api-gateway-deployment.yaml
+- api-gateway-svc.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: demo
