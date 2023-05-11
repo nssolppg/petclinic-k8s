@@ -14,7 +14,7 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: hyasuhisa/spring-petclinic-api-gateway:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3
+      - image: hyasuhisa/spring-petclinic-api-gateway:dadc2ac4293d0679fd17f4f8aed753acfb8caa0e
         name: api-gateway
         ports:
         - containerPort: 8080
