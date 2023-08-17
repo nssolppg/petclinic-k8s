@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-api-gateway
+  namespace: prod
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: api-gateway
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-api-gateway
+  namespace: prod
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - image: hyasuhisa/spring-petclinic-api-gateway:dadc2ac4293d0679fd17f4f8aed753acfb8caa0e
+        name: api-gateway
+        ports:
+        - containerPort: 8080
