@@ -1,21 +1,23 @@
 package petclinic
 
-#admin_server_service: #Service & {
-    _id: "cue-admin-server"
-    _port: 9090
-    _targetPort: 9090
+#AdminServerServiceConfig: #ServiceConfig & {
+    id: "cue-admin-server"
+    port: 9090
+    targetPort: 9090
 }
 
-#admin_server_deployment: #Deployment & {
-    _id: "cue-admin-server"
-	_imageName: "hyasuhisa/spring-petclinic-admin-server:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3"
-	_containerPort: 9090
+#AdminServerDeploymentConfig: #DeploymentConfig & {
+    id: "cue-admin-server"
+	imageName: "hyasuhisa/spring-petclinic-admin-server:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3"
+	containerPort: 9090
 }
 
-service: admin_server: prod: #admin_server_service & { _env: "prod" }
+app: adminServer: prod: {
+    service: #Service & { _config: #AdminServerServiceConfig & { env: "prod" } }
+    deployment: #Deployment & { _config: #AdminServerDeploymentConfig & { env: "prod" } }
+}
 
-deployment: admin_server: prod: #admin_server_deployment & { _env: "prod" }
-
-service: admin_server: stg: #admin_server_service & { _env: "stg" }
-
-deployment: admin_server: stg: #admin_server_deployment & { _env: "stg" }
+app: adminServer: stg: {
+    service: #Service & { _config: #AdminServerServiceConfig & { env: "stg" } }
+    deployment: #Deployment & { _config: #AdminServerDeploymentConfig & { env: "stg" } }
+}

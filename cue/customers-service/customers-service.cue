@@ -1,21 +1,23 @@
 package petclinic
 
-#customers_service_service: #Service & {
-    _id: "cue-customers-service"
-    _port: 8081
-    _targetPort: 8081
+#CustomersServiceServiceConfig: #ServiceConfig & {
+    id: "cue-customers-service"
+    port: 8081
+    targetPort: 8081
 }
 
-#customers_service_deployment: #Deployment & {
-    _id: "cue-customers-service"
-	_imageName: "hyasuhisa/spring-petclinic-customers-service:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3"
-	_containerPort: 8081
+#CustomersServiceDeploymentConfig: #DeploymentConfig & {
+    id: "cue-customers-service"
+    imageName: "hyasuhisa/spring-petclinic-customers-service:c53f193561c7631f6e7dde485b8ccbfdbef9d5f3"
+    containerPort: 8081
 }
 
-service: customers_service: prod: #customers_service_service & { _env: "prod" }
+app: customersService: prod: {
+    service: #Service & { _config: #CustomersServiceServiceConfig & { env: "prod" } }
+    deployment: #Deployment & { _config: #CustomersServiceDeploymentConfig & { env: "prod" } }
+}
 
-deployment: customers_service: prod: #customers_service_deployment & { _env: "prod" }
-
-service: customers_service: stg: #customers_service_service & { _env: "stg" }
-
-deployment: customers_service: stg: #customers_service_deployment & { _env: "stg" }
+app: customersService: stg: {
+    service: #Service & { _config: #CustomersServiceServiceConfig & { env: "stg" } }
+    deployment: #Deployment & { _config: #CustomersServiceDeploymentConfig & { env: "stg" } }
+}
