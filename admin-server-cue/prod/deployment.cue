@@ -3,7 +3,7 @@
   kind: "Deployment"
   metadata: {
     name: "prod-admin-server-cue-v2"
-    namespace: "petclnic-prod"
+    namespace: "prod"
   }
   spec: {
     replicas: 1
