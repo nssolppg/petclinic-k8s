@@ -1,8 +1,10 @@
 {
   apiVersion: "apps/v1"
   kind: "Deployment"
-  metadata: name: "prod-admin-server-cue-v2"
-  namespace: "petclnic-prod"
+  metadata: {
+    name: "prod-admin-server-cue-v2"
+    namespace: "petclnic-prod"
+  }
   spec: {
     replicas: 1
     revisionHistoryLimit: 3
